@@ -1,7 +1,7 @@
 import { Box, Button, Typography } from "@mui/material";
 import { useLocation, useNavigate } from "react-router-dom";
 import useAuth from "../hooks/useAuth";
-import ProfileButton from "./ProfileButton";
+import ProfileButton from "../components/ProfileButton";
 
 const Header = () => {
   const navigate = useNavigate();
@@ -15,6 +15,7 @@ const Header = () => {
         px: 2,
         position: "fixed",
         width: "98vw",
+        borderBottom: `2px solid #CECECE`,
       }}
     >
       <Box
@@ -22,14 +23,16 @@ const Header = () => {
           display: "flex",
           justifyContent: "space-between",
           alignItems: "center",
+          pb: 1.3,
+          pt: 0.5,
         }}
       >
         <Typography
-          variant="h3"
+          variant="h4"
           color={(theme) => theme.palette.common.white}
-          ml={3}
+          sx={{ fontFamily: "Pacifico" }}
         >
-          Logi
+          Logo
         </Typography>
         <Box>
           {/* {!isAuthenticated ? ( */}

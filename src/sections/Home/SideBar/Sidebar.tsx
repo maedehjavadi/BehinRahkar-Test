@@ -2,6 +2,7 @@ import ExpandLessIcon from "@mui/icons-material/ExpandLess";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import {
   Collapse,
+  Divider,
   List,
   ListItemButton,
   ListItemText,
@@ -9,17 +10,24 @@ import {
 } from "@mui/material";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { MainMenuEnum, sideMenuItems } from "../../types/main";
+import { sideMenuItems } from "../../../types/mockData";
+import { MainMenuEnum } from "../../../types/main";
 
 // const SidebarStyle = styled(Stack)(({ theme }) => ({}));
 
 const Sidebar = () => {
   const [isSeeMore, setIsLoadMore] = useState<Record<string, boolean>>({});
   const navigate = useNavigate();
+
   const handleSeeMoreClick = (key: string, type: MainMenuEnum) => {
     setIsLoadMore({ ...isSeeMore, [key]: !isSeeMore[key] });
-    navigate(`/main/${type}`);
+    if (type !== MainMenuEnum.Diagrams) {
+      navigate(`/main/${type}`);
+    } else {
+      navigate(`/main`);
+    }
   };
+
   return (
     <List
       sx={{
@@ -30,7 +38,7 @@ const Sidebar = () => {
       }}
       component="nav"
     >
-      {sideMenuItems.map((item) => (
+      {sideMenuItems.map((item, index) => (
         <>
           <ListItemButton
             onClick={() => handleSeeMoreClick(item?.id, item?.type)}
@@ -47,9 +55,9 @@ const Sidebar = () => {
             </ListItemText>
             {!!item?.children?.length &&
               (isSeeMore[item?.id] ? (
-                <ExpandMoreIcon color="info" />
-              ) : (
                 <ExpandLessIcon color="info" />
+              ) : (
+                <ExpandMoreIcon color="info" />
               ))}
           </ListItemButton>
           {item?.children?.map((child) => (
@@ -76,6 +84,9 @@ const Sidebar = () => {
               </List>
             </Collapse>
           ))}
+          {index + 1 < sideMenuItems.length && (
+            <Divider sx={{ bgcolor: "grey.800" }} />
+          )}
         </>
       ))}
     </List>

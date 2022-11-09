@@ -1,5 +1,4 @@
 import { Box } from "@mui/material";
-import { styled } from "@mui/material/styles";
 import { Outlet } from "react-router";
 
 import Header from "./Header";

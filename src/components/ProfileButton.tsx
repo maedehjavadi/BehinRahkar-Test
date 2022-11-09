@@ -42,7 +42,9 @@ const ProfileButton = () => {
               sx={{ display: "flex", justifyContent: "flex-start" }}
               startIcon={<AccountBoxIcon />}
             >
-              <Typography color="text.primary">User profile</Typography>
+              <Typography textTransform={"capitalize"} color="text.primary">
+                User profile
+              </Typography>
             </Button>
 
             <Button
@@ -50,7 +52,9 @@ const ProfileButton = () => {
               sx={{ display: "flex", justifyContent: "flex-start" }}
               startIcon={<SettingsIcon />}
             >
-              <Typography color="text.primary">Setting</Typography>
+              <Typography textTransform={"capitalize"} color="text.primary">
+                Setting
+              </Typography>
             </Button>
             <Button
               variant="text"
@@ -61,7 +65,9 @@ const ProfileButton = () => {
                 navigate("/sign-in");
               }}
             >
-              <Typography color="text.primary">Logout</Typography>
+              <Typography textTransform={"capitalize"} color="text.primary">
+                Logout
+              </Typography>
             </Button>
           </Stack>
         </Popover>

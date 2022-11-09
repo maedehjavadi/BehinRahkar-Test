@@ -5,6 +5,7 @@ import { PersonsType, PersonType } from "../../types/main";
 const initialState: PersonsType = {
   persons: [],
 };
+
 const slice = createSlice({
   name: "pesonsInfo",
   initialState,
@@ -18,8 +19,11 @@ const slice = createSlice({
     },
   },
 });
+
 export const personsSelector = (state: RootState) => ({
   persons: state.persons.persons,
 });
+
 export default slice.reducer;
+
 export const { setUsers, setPersonStatus } = slice.actions;

@@ -1,6 +1,4 @@
-// import TocIcon from "@mui/icons-material/Toc";
-// import BarChartIcon from "@mui/icons-material/BarChart";
-// import MoreIcon from "@mui/icons-material/More";
+import { ReactNode } from "react";
 
 export enum MainMenuEnum {
   Diagrams = "Diagrams",
@@ -20,30 +18,29 @@ export interface PersonsType {
   persons: PersonType[];
 }
 
-export const sideMenuItems = [
-  {
-    id: "1",
-    itemName: "Visualizations",
-    type: MainMenuEnum.Diagrams,
-    children: null,
-  },
-  { id: "2", itemName: "Persons", type: MainMenuEnum.Persons, children: null },
-  {
-    id: "3",
-    itemName: "More",
-    type: MainMenuEnum.More,
-    children: [
-      { id: "1", item: "item1" },
-      { id: "2", item: "item2" },
-    ],
-  },
-  {
-    id: "4",
-    itemName: "Items",
-    type: MainMenuEnum.Items,
-    children: [
-      { id: "1", item: "item1" },
-      { id: "2", item: "item2" },
-    ],
-  },
-];
+export enum RankEnum {
+  XLow = "Very Low ",
+  Low = "Low",
+  Medium = "Medium",
+  High = "High",
+}
+
+export enum DiagramCardEnum {
+  Increase = "INCREAS",
+  Decrease = "DECREASE",
+  Stable = "STABLE",
+  Warning = "WARNING",
+}
+
+export type StateType = {
+  icon?: ReactNode;
+  color: string;
+  // actionType?: DiagramCardEnum;
+};
+
+export type CardPropType = {
+  id: number;
+  title: string;
+  action: DiagramCardEnum;
+  value: string;
+};
