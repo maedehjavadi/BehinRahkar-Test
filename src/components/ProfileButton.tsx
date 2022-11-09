@@ -62,7 +62,7 @@ const ProfileButton = () => {
               startIcon={<LogoutIcon />}
               onClick={() => {
                 logout();
-                navigate("/sign-in");
+                navigate("/");
               }}
             >
               <Typography textTransform={"capitalize"} color="text.primary">

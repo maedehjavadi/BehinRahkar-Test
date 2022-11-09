@@ -9,7 +9,7 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
-import { useLayoutEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
@@ -20,9 +20,9 @@ const SignIn = () => {
   const { login, isAuthenticated, loading } = useAuth();
   const navigate = useNavigate();
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     if (isAuthenticated) {
-      navigate("/main");
+      navigate("/main", { replace: true });
     }
   }, [isAuthenticated]);
 

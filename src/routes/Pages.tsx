@@ -9,7 +9,7 @@ function Pages() {
   return (
     <Routes>
       <Route element={<Layout />}>
-        <Route path="sign-in" element={<SignIn />} />
+        <Route path="/" element={<SignIn />} />
         <Route path="main/*" element={<Home />} />
       </Route>
       <Route path="*" element={<NotFound />} />

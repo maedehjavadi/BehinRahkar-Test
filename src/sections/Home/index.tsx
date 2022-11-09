@@ -19,7 +19,7 @@ const Home = () => {
 
   useEffect(() => {
     if (!isAuthenticated) {
-      navigate("/sign-in");
+      navigate("/");
     }
   }, [isAuthenticated]);
 

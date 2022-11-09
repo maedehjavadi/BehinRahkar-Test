@@ -36,13 +36,13 @@ const Header = () => {
         </Typography>
         <Box>
           {/* {!isAuthenticated ? ( */}
-          {pathname === "/sign-in" && !isAuthenticated ? (
+          {pathname === "/" && !isAuthenticated ? (
             <Button
               variant="contained"
               size="large"
               color="primary"
               sx={{ backgroundColor: "#212121" }}
-              onClick={() => navigate("/sign-in")}
+              onClick={() => navigate("/")}
             >
               Login
             </Button>
