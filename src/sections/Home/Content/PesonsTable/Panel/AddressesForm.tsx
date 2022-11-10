@@ -7,6 +7,7 @@ import {
   Typography,
 } from "@mui/material";
 import React, { useState } from "react";
+import AddressesBox from "./AddressesBox";
 
 const Addresses = (props: {
   data: string[];
@@ -21,14 +22,15 @@ const Addresses = (props: {
         alignItems="center"
         justifyContent="space-between"
         spacing={2}
+        mb={3}
       >
-        <Typography variant="subtitle2">Address:</Typography>
         <TextField
           fullWidth
           onChange={(e) => {
             setAddress(e.target.value);
           }}
           sx={{ p: 0 }}
+          label="Address"
         />
         <Button
           variant="contained"
@@ -42,16 +44,7 @@ const Addresses = (props: {
           </Typography>
         </Button>
       </Stack>
-      <Stack spacing={2} mt={4}>
-        {data.map((add, i) => (
-          <Box key={i}>
-            <Typography variant="body1" py={2}>
-              {add}
-            </Typography>
-            {i < data.length && <Divider />}
-          </Box>
-        ))}
-      </Stack>
+      <AddressesBox data={data} />
     </Stack>
   );
 };

@@ -4,7 +4,7 @@ import { TabContext, TabList, TabPanel } from "@mui/lab";
 import React, { useState } from "react";
 import GeneralForm from "./GeneralForm";
 import { PersonGeneralData } from "../../../../../types/main";
-import Addresses from "./Addresses";
+import Addresses from "./AddressesForm";
 import GraphTree from "./GraphTree";
 
 const PersonFromTabs = () => {

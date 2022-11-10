@@ -8,14 +8,14 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
-import React from "react";
+import React, { FC } from "react";
 import { useForm } from "react-hook-form";
 import { GenderEnum, PersonGeneralData } from "../../../../../types/main";
 
-const GeneralForm = (props: {
+const GeneralForm: FC<{
   setData: React.Dispatch<React.SetStateAction<PersonGeneralData | undefined>>;
   data: PersonGeneralData | undefined;
-}) => {
+}> = (props) => {
   const { data, setData } = props;
   const methods = useForm<PersonGeneralData>({
     mode: "onChange",
