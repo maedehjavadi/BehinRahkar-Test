@@ -13,7 +13,6 @@ const useAuth = () => {
     await axios
       .post("https://reqres.in/api/login", { email: username, password })
       .then((response) => setToken(response?.data?.token));
-    // .catch((error) => console.log("error", error));
     setLoading(false);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);

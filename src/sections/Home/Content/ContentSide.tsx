@@ -7,8 +7,8 @@ import PersonsContent from "./PesonsTable/PersonsContent";
 
 const ContentSide = () => {
   const { pathname } = useLocation();
-  console.log(pathname);
   const [content, setContent] = useState<string>();
+
   useEffect(() => {
     if (pathname !== "/main") {
       setContent(pathname.replace("/main/", ""));

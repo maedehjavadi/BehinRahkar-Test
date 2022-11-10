@@ -14,7 +14,7 @@ const ProfileButton = () => {
   const { logout } = useAuth();
   const navigate = useNavigate();
   return (
-    <Box>
+    <Box mt={0.5}>
       <Avatar
         variant="circular"
         onClick={(event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {

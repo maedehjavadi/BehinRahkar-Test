@@ -22,8 +22,8 @@ const Diagrams = () => {
                 justifyContent="space-around"
                 alignItems="center"
               >
-                {DiagramCardsData.map((card) => (
-                  <Box pt={2}>
+                {DiagramCardsData.map((card, i) => (
+                  <Box pt={2} key={i}>
                     <DiagramCard
                       action={card.action}
                       title={card.title}

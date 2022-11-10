@@ -1,4 +1,12 @@
-import { Box, Button, Paper, styled, Switch, Typography } from "@mui/material";
+import {
+  Box,
+  Button,
+  Collapse,
+  Paper,
+  styled,
+  Switch,
+  Typography,
+} from "@mui/material";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
@@ -14,8 +22,9 @@ import {
 } from "../../../../store/slices/persons";
 import { Rank_COLORS } from "../../../../types/mockData";
 import { PersonType } from "../../../../types/main";
-import GridHead from "./GridHead";
+import GridHead from "./Table/GridHead";
 import BackDropLoading from "../../../../components/BackDropLoading";
+import PersonFromTabs from "./Panel/PersonFromTabs";
 
 const StyledTableRow = styled(TableRow)(({ theme }) => ({
   "&:nth-of-type(odd)": {
@@ -29,6 +38,7 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 const PersonsContent = () => {
   const [checked, setChecked] = useState<Record<string, boolean>>({});
   const [loading, setLoading] = useState<boolean>(false);
+  const [collapse, setCollapse] = useState(false);
 
   const dispatch = useDispatch();
   const selectorState = useSelector(personsSelector);
@@ -51,59 +61,78 @@ const PersonsContent = () => {
       })
     );
   };
+  const handleCollapse = () => {
+    setCollapse((prev) => !prev);
+  };
 
   return (
     <>
-      <Button sx={{ my: 2, textTransform: "capitalize" }}>
-        <Typography variant="button" textTransform={"capitalize"}>
-          + New
-        </Typography>{" "}
+      <Button
+        sx={{ my: 2, textTransform: "capitalize" }}
+        onClick={handleCollapse}
+      >
+        {!collapse ? (
+          <Typography variant="button" textTransform={"capitalize"}>
+            + New
+          </Typography>
+        ) : (
+          <Typography variant="button" textTransform={"capitalize"}>
+            &times; Close
+          </Typography>
+        )}
       </Button>
-      <TableContainer component={Paper}>
-        <Table sx={{ minWidth: 650 }} aria-label="simple table">
-          <GridHead />
-          {loading ? (
-            <BackDropLoading open={loading} />
-          ) : (
-            <TableBody>
-              {selectorState.persons.map(
-                (person: PersonType, index: number) => (
-                  <StyledTableRow key={person.id}>
-                    <TableCell sx={{ color: "info.main" }} align="center">
-                      {person.id}
-                    </TableCell>
-                    <TableCell align="center">{person.email}</TableCell>
-                    <TableCell align="center">{person.first_name}</TableCell>
-                    <TableCell align="center">{person.last_name}</TableCell>
-                    <TableCell align="center">
-                      <Box
-                        key={index}
-                        sx={{
-                          bgcolor: `${Rank_COLORS[index].value}`,
-                          py: 1,
-                          borderRadius: 2,
-                        }}
-                      >
-                        {Rank_COLORS[index].type}
-                      </Box>
-                    </TableCell>
-                    <TableCell align="center">
-                      <Switch
-                        checked={
-                          checked[person.id] ||
-                          (selectorState.persons[index].status as boolean)
-                        }
-                        onChange={(e) => handleChange(e, person)}
-                        inputProps={{ "aria-label": "controlled" }}
-                      />
-                    </TableCell>
-                  </StyledTableRow>
-                )
-              )}
-            </TableBody>
-          )}
-        </Table>
-      </TableContainer>
+      <Collapse in={collapse}>
+        <Box sx={{ width: "100%", bgcolor: "background.paper" }}>
+          <PersonFromTabs />
+        </Box>
+      </Collapse>
+      {!collapse && (
+        <TableContainer component={Paper}>
+          <Table sx={{ minWidth: 650 }} aria-label="simple table">
+            <GridHead />
+            {loading ? (
+              <BackDropLoading open={loading} />
+            ) : (
+              <TableBody>
+                {selectorState.persons.map(
+                  (person: PersonType, index: number) => (
+                    <StyledTableRow key={person.id}>
+                      <TableCell sx={{ color: "info.main" }} align="center">
+                        {person.id}
+                      </TableCell>
+                      <TableCell align="center">{person.email}</TableCell>
+                      <TableCell align="center">{person.first_name}</TableCell>
+                      <TableCell align="center">{person.last_name}</TableCell>
+                      <TableCell align="center">
+                        <Box
+                          key={index}
+                          sx={{
+                            bgcolor: `${Rank_COLORS[index].value}`,
+                            py: 1,
+                            borderRadius: 2,
+                          }}
+                        >
+                          {Rank_COLORS[index].type}
+                        </Box>
+                      </TableCell>
+                      <TableCell align="center">
+                        <Switch
+                          checked={
+                            checked[person.id] ||
+                            (selectorState.persons[index].status as boolean)
+                          }
+                          onChange={(e) => handleChange(e, person)}
+                          inputProps={{ "aria-label": "controlled" }}
+                        />
+                      </TableCell>
+                    </StyledTableRow>
+                  )
+                )}
+              </TableBody>
+            )}
+          </Table>
+        </TableContainer>
+      )}
     </>
   );
 };

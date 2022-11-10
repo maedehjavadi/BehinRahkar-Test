@@ -24,6 +24,11 @@ export enum RankEnum {
   Medium = "Medium",
   High = "High",
 }
+export enum GenderEnum {
+  Men = "Men ",
+  Women = "Women",
+  Other = "Other",
+}
 
 export enum DiagramCardEnum {
   Increase = "INCREAS",
@@ -43,4 +48,11 @@ export type CardPropType = {
   title: string;
   action: DiagramCardEnum;
   value: string;
+};
+export type PersonGeneralData = {
+  id: number;
+  name: string;
+  email: string;
+  gender: string;
+  description: string;
 };
