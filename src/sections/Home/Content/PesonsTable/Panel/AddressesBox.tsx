@@ -10,9 +10,9 @@ const AddressesBox = (props: { data: string[] }) => {
           borderRadius: 1,
           py: 1,
 
-          boxShadow: "0px 0px 10px 0px rgba(0,0,0,0.25)",
+          boxShadow: "0px 0px 5px 0px rgba(0,0,0,0.25)",
           minWidth: "90%",
-          bgcolor: "grey.100",
+          bgcolor: "grey.50",
           minHeight: 350,
         }}
       >

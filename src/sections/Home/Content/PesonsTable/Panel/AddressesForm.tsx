@@ -29,7 +29,6 @@ const Addresses = (props: {
           onChange={(e) => {
             setAddress(e.target.value);
           }}
-          sx={{ p: 0 }}
           label="Address"
         />
         <Button
