@@ -1,21 +1,31 @@
-import { Box, Divider, Typography } from "@mui/material";
-import React from "react";
+import { Box, Divider, Typography, styled } from "@mui/material";
 
+const AddressBoxStyled = styled(Box)(({ theme }) => ({
+  minWidth: "90%",
+  minHeight: 350,
+  display: "flex",
+  flexDirection: "column",
+  borderRadius: theme.spacing(1),
+  bgcolor: theme.palette.grey[50],
+  boxShadow: "0px 0px 5px 0px rgba(0,0,0,0.25)",
+}));
+
+const NoAddressBoxStyled = styled(Box)(({ theme }) => ({
+  borderRadius: theme.spacing(50),
+  backgroundColor: theme.palette.grey[100],
+  width: 200,
+  height: 200,
+  alignSelf: "center",
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+  margin: "auto 0",
+}));
 const AddressesBox = (props: { data: string[] }) => {
   const { data } = props;
   return (
     <>
-      <Box
-        sx={{
-          borderRadius: 1,
-          py: 1,
-
-          boxShadow: "0px 0px 5px 0px rgba(0,0,0,0.25)",
-          minWidth: "90%",
-          bgcolor: "grey.50",
-          minHeight: 350,
-        }}
-      >
+      <AddressBoxStyled>
         {data.length > 0 ? (
           <>
             {data.map((add: string, i: number) => (
@@ -29,7 +39,6 @@ const AddressesBox = (props: { data: string[] }) => {
                     flexDirection: "row",
                     justifyContent: "flex-start",
                     gap: 3,
-                    // borderBottom: "1px solid black",
                   }}
                 >
                   <Typography variant="body1" color="InfoText">
@@ -45,19 +54,17 @@ const AddressesBox = (props: { data: string[] }) => {
             ))}
           </>
         ) : (
-          <>
+          <NoAddressBoxStyled>
             <Typography
-              variant="h6"
+              variant="body1"
               textTransform="capitalize"
-              textAlign="center"
-              color="info.main"
-              pt={16}
+              color="GrayText"
             >
               no address added
             </Typography>
-          </>
+          </NoAddressBoxStyled>
         )}
-      </Box>
+      </AddressBoxStyled>
     </>
   );
 };

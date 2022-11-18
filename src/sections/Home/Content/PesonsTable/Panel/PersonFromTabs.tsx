@@ -48,7 +48,9 @@ const PersonFromTabs = () => {
             setData={setPersonGeneralData}
           />
         </TabPanel>
-        <TabPanel value="2">{/* <GraphTree /> */}</TabPanel>
+        <TabPanel value="2">
+          <GraphTree />
+        </TabPanel>
         <TabPanel value="3">
           <Addresses data={addresses} setData={setAddresses} />
         </TabPanel>

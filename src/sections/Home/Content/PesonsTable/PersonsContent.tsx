@@ -81,6 +81,7 @@ const PersonsContent = () => {
           </Typography>
         )}
       </Button>
+
       <Collapse in={collapse}>
         <Box sx={{ width: "100%", bgcolor: "background.paper" }}>
           <PersonFromTabs />
