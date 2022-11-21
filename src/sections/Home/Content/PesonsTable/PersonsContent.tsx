@@ -13,7 +13,7 @@ import TableCell from "@mui/material/TableCell";
 import TableContainer from "@mui/material/TableContainer";
 import TableRow from "@mui/material/TableRow";
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import { useDispatch, useSelector } from "../../../../store";
 import {
   personsSelector,
@@ -43,14 +43,22 @@ const PersonsContent = () => {
   const dispatch = useDispatch();
   const selectorState = useSelector(personsSelector);
 
-  useEffect(() => {
-    setLoading(true);
-    axios.get(`https://reqres.in/api/users?page=2`).then((res) => {
-      const persons = res.data;
-      dispatch(setUsers({ persons: persons.data }));
+  const getData = useCallback(
+    async (url: string) => {
+      setLoading(true);
+      await axios.get(`${url}`).then((res) => {
+        const persons = res.data;
+        dispatch(setUsers({ persons: persons.data }));
+        setLoading(false);
+      });
       setLoading(false);
-    });
-  }, [dispatch]);
+    },
+    [dispatch]
+  );
+
+  useEffect(() => {
+    getData("https://reqres.in/api/users?page=2");
+  }, [getData]);
 
   const handleChange = (event: any, person: PersonType) => {
     setChecked({ ...checked, [person.id]: event.target.checked[person.id] });
@@ -68,7 +76,7 @@ const PersonsContent = () => {
   return (
     <>
       <Button
-        sx={{ my: 2, textTransform: "capitalize" }}
+        sx={{ my: 3, textTransform: "capitalize" }}
         onClick={handleCollapse}
       >
         {!collapse ? (
@@ -76,7 +84,11 @@ const PersonsContent = () => {
             + New
           </Typography>
         ) : (
-          <Typography variant="button" textTransform={"capitalize"}>
+          <Typography
+            variant="button"
+            textTransform={"capitalize"}
+            color="error.light"
+          >
             &times; Close
           </Typography>
         )}

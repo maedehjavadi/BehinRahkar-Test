@@ -130,3 +130,15 @@ export const ColumnChartData = [
   { name: "three", students: 200 },
   { name: "four", students: 100 },
 ];
+
+export const GraphData = {
+  name: "Parent",
+  children: [
+    {
+      name: "Child One",
+    },
+    {
+      name: "Child Two",
+    },
+  ],
+};

@@ -62,12 +62,12 @@ const Sidebar = () => {
           </ListItemButton>
           {item?.children?.map((child) => (
             <Collapse
+              key={child?.id}
               in={isSeeMore[item?.id]}
               timeout="auto"
               unmountOnExit
-              key={child?.id}
             >
-              <List>
+              <List key={child?.id}>
                 <ListItemButton
                   onClick={() => handleSeeMoreClick(child?.id, item?.type)}
                   sx={{ pl: 2.5, py: 1, borderRadius: 1 }}

@@ -22,7 +22,7 @@ const Addresses = (props: {
           onChange={(e) => {
             setAddress(e.target.value);
           }}
-          label="Address"
+          label="Please enter an address"
         />
         <Button
           variant="contained"

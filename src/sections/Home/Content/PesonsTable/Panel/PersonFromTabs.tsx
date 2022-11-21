@@ -1,4 +1,4 @@
-import { Box, Tab } from "@mui/material";
+import { Box, styled, Tab, useTheme } from "@mui/material";
 import { TabContext, TabList, TabPanel } from "@mui/lab";
 
 import React, { useState } from "react";
@@ -7,7 +7,19 @@ import { PersonGeneralData } from "../../../../../types/main";
 import Addresses from "./AddressesForm";
 import GraphTree from "./GraphTree";
 
+interface ITabInterface {
+  active: boolean;
+}
+
+const TabStyled = styled(Tab)<ITabInterface>(({ theme, active }) => ({
+  color: active
+    ? `${theme.palette.warning.light}!important`
+    : `${theme.palette.grey[100]}!important`,
+  textTransform: "capitalize",
+}));
+
 const PersonFromTabs = () => {
+  const theme = useTheme();
   const [value, setValue] = useState<number>(1);
   const [addresses, setAddresses] = useState<string[]>([]);
   const [personGeneralData, setPersonGeneralData] =
@@ -23,20 +35,30 @@ const PersonFromTabs = () => {
         <Box sx={{ borderBottom: 1, borderColor: "divider", mb: 2 }}>
           <TabList
             onChange={handleChange}
-            sx={{ "&>div>div": { justifyContent: "space-around" } }}
+            sx={{
+              "&>div>div": {
+                justifyContent: "space-around",
+                border: "1px solid black",
+                backgroundColor: theme.palette.grey[900],
+              },
+            }}
+            TabIndicatorProps={{
+              style: { background: theme.palette.warning.main },
+            }}
+            variant="fullWidth"
           >
-            <Tab
-              sx={{ textTransform: "capitalize" }}
+            <TabStyled
+              active={value.toString() === "1"}
               label="General"
               value="1"
             />
-            <Tab
-              sx={{ textTransform: "capitalize" }}
+            <TabStyled
+              active={value.toString() === "2"}
               label="Relations"
               value="2"
             />
-            <Tab
-              sx={{ textTransform: "capitalize" }}
+            <TabStyled
+              active={value.toString() === "3"}
               label="Addresses"
               value="3"
             />

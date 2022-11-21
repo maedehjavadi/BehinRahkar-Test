@@ -1,18 +1,13 @@
-import React from "react";
-// import { Tree } from "react-tree-graph";
+import { Box } from "@mui/material";
+import Tree from "react-d3-tree/lib/Tree";
+import { GraphData } from "../../../../../types/mockData";
+
 const GraphTree = () => {
-  const data = {
-    name: "Parent",
-    children: [
-      {
-        name: "Child One",
-      },
-      {
-        name: "Child Two",
-      },
-    ],
-  };
-  return <>{/* <Tree data={data} height={400} width={400} /> */}</>;
+  return (
+    <Box width="100%" minHeight={800}>
+      <Tree data={GraphData} />
+    </Box>
+  );
 };
 
 export default GraphTree;

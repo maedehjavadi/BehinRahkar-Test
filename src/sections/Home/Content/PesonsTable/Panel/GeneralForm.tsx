@@ -17,6 +17,7 @@ const GeneralForm: FC<{
   data: PersonGeneralData | undefined;
 }> = (props) => {
   const { data, setData } = props;
+
   const methods = useForm<PersonGeneralData>({
     mode: "onChange",
     defaultValues: {
@@ -27,7 +28,7 @@ const GeneralForm: FC<{
   const {
     handleSubmit,
     register,
-    formState: { errors },
+    formState: { errors, isValid },
   } = methods;
 
   const onSubmit = async (data: PersonGeneralData) => {
@@ -41,13 +42,13 @@ const GeneralForm: FC<{
           <Stack
             spacing={1.5}
             direction="row"
-            justifyContent="space-between"
+            justifyContent="space-around"
             alignItems="center"
           >
             <Typography variant="subtitle1">Name</Typography>
             <TextField
               fullWidth
-              label="Name"
+              label="Name*"
               helperText={
                 errors.name && (
                   <Typography
@@ -59,6 +60,7 @@ const GeneralForm: FC<{
                 )
               }
               {...register("name", {
+                required: true,
                 pattern: {
                   message: "Please enter valid name",
                   value:
@@ -77,7 +79,7 @@ const GeneralForm: FC<{
             <Typography variant="subtitle1">Email</Typography>
             <TextField
               fullWidth
-              label="Email"
+              label="Email*"
               helperText={
                 errors.email && (
                   <Typography
@@ -89,6 +91,7 @@ const GeneralForm: FC<{
                 )
               }
               {...register("email", {
+                required: true,
                 pattern: {
                   value: /\S+@\S+\.\S+/,
                   message: "Entered value does not match email format",
@@ -105,16 +108,16 @@ const GeneralForm: FC<{
           >
             <Typography variant="subtitle1">Gender</Typography>
             <FormControl fullWidth>
-              <InputLabel id="demo-simple-select-label">Gender</InputLabel>
+              <InputLabel id="demo-simple-select-label">Gender*</InputLabel>
               <Select
-                {...register("gender")}
-                labelId="demo-simple-select-label"
-                id="demo-simple-select"
+                {...register("gender", { required: true })}
                 value={data?.gender}
                 label="Gender"
+                placeholder="select your gender"
+                defaultValue=""
               >
                 {Object.keys(GenderEnum).map((gnd, i) => (
-                  <MenuItem key={i} value={gnd}>
+                  <MenuItem key={i + 1} value={gnd || ""}>
                     {gnd}
                   </MenuItem>
                 ))}
@@ -127,12 +130,12 @@ const GeneralForm: FC<{
               label="Description"
               placeholder="write some description..."
               multiline
-              rows={5}
+              minRows={5}
               maxRows={10}
               {...register("description")}
             />
           </Stack>
-          <Button type="submit" variant="contained">
+          <Button type="submit" variant="contained" disabled={!isValid}>
             Submit
           </Button>
         </Stack>
