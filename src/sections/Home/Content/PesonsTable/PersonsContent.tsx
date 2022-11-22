@@ -87,7 +87,7 @@ const PersonsContent = () => {
           <Typography
             variant="button"
             textTransform={"capitalize"}
-            color="error.light"
+            color="error.dark"
           >
             &times; Close
           </Typography>

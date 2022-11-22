@@ -139,6 +139,14 @@ export const GraphData = {
     },
     {
       name: "Child Two",
+      children: [
+        {
+          name: "Child Two-One",
+        },
+        {
+          name: "Child Two-Two",
+        },
+      ],
     },
   ],
 };
